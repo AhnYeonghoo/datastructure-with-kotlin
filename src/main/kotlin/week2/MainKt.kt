@@ -8,7 +8,6 @@ fun main() {
     // score = "Hey" xx
     
     var scores1 = arrayOf(100, 90, 80)
-    var scores2 = Array<Int>? = null
     
     print(scores1.size)
 
