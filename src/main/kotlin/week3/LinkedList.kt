@@ -14,22 +14,25 @@ class LinkedList<T> {
         return head.toString()
     }
 
-    fun push(value: T): Unit {
+    fun push(value: T): LinkedList<T> {
         head = Node(value = value, next = head)
         if (tail == null) {
             tail = head
         }
         size++
+        return this
     }
-    fun append(value: T) {
+    fun append(value: T): LinkedList<T> {
         if (isEmpty()) {
             push(value)
-            return
+            return this
         }
         tail?.next = Node(value = value)
         tail = tail?.next
         size++
+        return this
     }
+
 
     fun nodeAt(index: Int): Node<T>? {
         var currentNode = head
@@ -52,18 +55,41 @@ class LinkedList<T> {
         return newNode
     }
 
+    fun pop(): T? {
+        if (!isEmpty()) size--
+        val result = head?.value
+        head = head?.next
+        if (isEmpty()) tail = null
+        return result
+    }
+
+    fun removeLast(): T? {
+        val head = head ?: return null
+        if (head.next == null) return pop()
+        size--
+        var prev = head
+        var current = head
+        var next = current.next
+        while (next != null) {
+            prev = current
+            current = next
+            next = current.next
+        }
+        prev.next = null
+        tail = prev
+        return current.value
+    }
+
 }
 
 fun main() {
     var list = LinkedList<Int>()
-    list.push(10)
-    list.push(30)
-    list.push(20)
+    list.push(10).push(20).push(30)
     println(list)
+    var poppedValue = list.pop()
+    println(poppedValue)
     var list2 = LinkedList<Int>()
-    list.append(10)
-    list.append(30)
-    list.append(20)
+    list.append(10).append(30).append(20)
     println(list)
     println()
     println()
