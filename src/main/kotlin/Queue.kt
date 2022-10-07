@@ -41,6 +41,8 @@ abstract class AbstractPriorityQueue<T> : QueueInterface<T> {
     override fun peek() = heap.peek()
 }
 
+
+
 class MaxPriorityQueue<T: Comparable<T>> : AbstractPriorityQueue<T>() {
     override val heap: MaxHeap<T> = MaxHeap<T>()
 }

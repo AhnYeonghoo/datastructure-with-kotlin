@@ -1,12 +1,38 @@
 import java.lang.Math.max
 
 class BinaryNode<T: Comparable<T>>(var value: T) {
+    val isBinarySearchTree: Boolean
+        get() = isBST(this, min = null, max = null)
     var leftChild: BinaryNode<T>? = null
     var rightChild: BinaryNode<T>? = null
     val min: BinaryNode<T>?
         get() = leftChild?.min ?: this
-    val isBinarySearchTree: Boolean
-        get() = isBST(this, min = null, max = null)
+
+    private fun remove(
+        node: BinaryNode<T>?,
+        value: T
+    ): BinaryNode<T>? {
+        node ?: return null
+        when {
+            value == node.value -> {
+                if (node.leftChild == null && node.rightChild == null)
+                    return null
+                if (node.leftChild == null)
+                    return node.rightChild
+                if (node.rightChild == null)
+                    return node.leftChild
+                node.rightChild?.min?.value?.let {
+                    node.value = it
+                }
+                node.rightChild = remove(node.rightChild, node.value)
+            }
+            value < node.value -> node.leftChild =
+                remove(node.leftChild, value)
+            else -> node.rightChild = remove(node.rightChild, value)
+        }
+        return node
+    }
+
 
     private fun diagram(node: BinaryNode<T>?,
                         top: String = "",
@@ -70,3 +96,7 @@ class BinaryNode<T: Comparable<T>>(var value: T) {
 }
 
 typealias BinaryVisitor<T> = (T) -> Unit
+
+
+
+}
