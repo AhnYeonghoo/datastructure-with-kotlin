@@ -98,5 +98,3 @@ class BinaryNode<T: Comparable<T>>(var value: T) {
 typealias BinaryVisitor<T> = (T) -> Unit
 
 
-
-}

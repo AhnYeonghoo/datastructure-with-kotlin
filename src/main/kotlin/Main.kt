@@ -8,4 +8,23 @@ fun main() {
     } else {
         println("Couldn't find 5")
     }
+    TheThing.items.add("C")
+    println(TheThing)
+
+    val lengthComparator = Comparator { str1: String, str2: String -> str1.length - str2.length}
+    println(listOf("aaa", "bb", "c").sortedWith(lengthComparator))
+
+
+}
+
+object TheThing {
+    val items = arrayListOf<String>("A", "B")
+
+    override fun toString(): String {
+        var ret = "TheThing: "
+        items.forEach {
+            ret += it
+        }
+        return ret
+    }
 }

@@ -103,12 +103,12 @@ class AVLTree<T: Comparable<T>> {
         return balancedNode
     }
 
-    fun remove(value: T {
+    fun remove(value: T) {
         root = remove(root, value)
     }
 
     fun leafNodesOfPerfect(height: Int): Int {
-        return 2.0.pow().toInt()
+        return 2.0.pow(2.0).toInt()
     }
 
     fun nodesOfPerfect(height: Int): Int {
